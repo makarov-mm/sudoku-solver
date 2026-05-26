@@ -14,14 +14,25 @@ public sealed class SudokuModel
         {
             for (int j = 0; j < BoardSize; ++j)
             {
-                if (Rnd.Next(0, 3) == 0)
+                if (Rnd.Next(0, 2) == 0)
                 {
                     foreach (int value in GetRandomValues(GenValues(BoardSize).ToHashSet()))
                     {
                         if (model.IsValid(i, j, value))
                         {
+                            var tmp = (int[,])model.Board.Clone();
+
                             model.Board[i, j] = value;
-                            break;
+                            model.Solve();
+
+                            if (model.IsSolved())
+                            {
+                                model.Board = tmp;
+                                model.Board[i, j] = value;
+                                break;
+                            }
+
+                            model.Board = tmp;
                         }
                     }
                 }
@@ -150,7 +161,7 @@ public sealed class SudokuModel
             }
         }
 
-        return false;
+        return true;
     }
 
     private bool IsValid(int x, int y, int value)
