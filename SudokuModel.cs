@@ -8,21 +8,25 @@ public sealed class SudokuModel
 
     public static SudokuModel GenerateExample()
     {
-        var model = new SudokuModel
+        var model = new SudokuModel();
+
+        for (int i = 0; i < BoardSize; ++i)
         {
-            Board = new[,]
+            for (int j = 0; j < BoardSize; ++j)
             {
-                { 5, 3, 0, 0, 7, 0, 0, 0, 0 },
-                { 6, 0, 0, 1, 9, 5, 0, 0, 0 },
-                { 0, 9, 8, 0, 0, 0, 0, 6, 0 },
-                { 8, 0, 0, 0, 6, 0, 0, 0, 3 },
-                { 4, 0, 0, 8, 0, 3, 0, 0, 1 },
-                { 7, 0, 0, 0, 2, 0, 0, 0, 6 },
-                { 0, 6, 0, 0, 0, 0, 2, 8, 0 },
-                { 0, 0, 0, 4, 1, 9, 0, 0, 5 },
-                { 0, 0, 0, 0, 8, 0, 0, 7, 9 }
+                if (Rnd.Next(0, 3) == 0)
+                {
+                    foreach (int value in GetRandomValues(GenValues(BoardSize).ToHashSet()))
+                    {
+                        if (model.IsValid(i, j, value))
+                        {
+                            model.Board[i, j] = value;
+                            break;
+                        }
+                    }
+                }
             }
-        };
+        }
 
         return model;
     }
@@ -178,7 +182,7 @@ public sealed class SudokuModel
         return true;
     }
 
-    private IEnumerable<int> GenValues(int count)
+    private static IEnumerable<int> GenValues(int count)
     {
         for (int i = 1; i <= count; ++i)
         {
@@ -186,7 +190,7 @@ public sealed class SudokuModel
         }
     }
 
-    private IEnumerable<int> GetRandomValues(HashSet<int> set)
+    private static IEnumerable<int> GetRandomValues(HashSet<int> set)
     {
         set = new HashSet<int>(set.ToArray());
 
