@@ -24,6 +24,7 @@ public static class SudokuRenderer
             (size.Height - targetSize) / 2);
 
         DrawBoard(gfx, offset, cellCount, targetCellSize, targetMarginSize);
+        DrawValues(gfx, offset, cellCount, targetCellSize, targetMarginSize, board);
     }
 
     private static void DrawBoard(Graphics gfx, Point offset, int cellCount, int cellSize, int margin)
@@ -43,6 +44,31 @@ public static class SudokuRenderer
 
                 gfx.FillRectangle(backgroundBrush, x, y, cellSize, cellSize);
                 gfx.DrawRectangle(borderPen, x, y, cellSize, cellSize);
+            }
+        }
+    }
+
+    private static void DrawValues(Graphics gfx, Point offset, int cellCount, int cellSize, int margin, int[,] board)
+    {
+        var fontColor = Color.FromArgb(30, 60, 100);
+        using var font = new Font("Segoe UI", cellSize / 3f, FontStyle.Bold, GraphicsUnit.Pixel);
+        using var brush = new SolidBrush(fontColor);
+
+        for (int i = 0; i < cellCount; ++i)
+        {
+            for (int j = 0; j < cellCount; ++j)
+            {
+                int x = offset.X + (cellSize + margin) * i + margin;
+                int y = offset.Y + (cellSize + margin) * j + margin;
+                int value = board[i, j];
+                string text = $"{board[i, j]}";
+                SizeF textSize = gfx.MeasureString(text, font);
+                var pos = new PointF(x + (cellSize - textSize.Width) / 2f, y + (cellSize - textSize.Height) / 2f);
+
+                if (value != 0)
+                {
+                    gfx.DrawString(text, font, brush, pos);
+                }
             }
         }
     }
