@@ -32,7 +32,7 @@
             btnSolve = new Button();
             btnReset = new Button();
             btnExample = new Button();
-            pnlMain = new Panel();
+            pnlMain = new DoubleBufferedPanel();
             flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
