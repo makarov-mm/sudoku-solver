@@ -3,20 +3,20 @@
 public sealed class SudokuModel
 {
     public const int BlockSize = 3;
-    public const int BoardSize = 9;
-    public int[,] Board = new int[BoardSize, BoardSize];
+    public const int BlocksCount = 3;
+    public int[,] Board = new int[BlocksCount * BlockSize, BlocksCount * BlockSize];
 
     public static SudokuModel GenerateExample()
     {
         var model = new SudokuModel();
 
-        for (int i = 0; i < BoardSize; ++i)
+        for (int i = 0; i < BlocksCount * BlockSize; ++i)
         {
-            for (int j = 0; j < BoardSize; ++j)
+            for (int j = 0; j < BlocksCount * BlockSize; ++j)
             {
                 if (Utils.Rnd.Next(0, 2) == 0)
                 {
-                    foreach (int value in GenValues(BoardSize).ToHashSet().GetRandomValues())
+                    foreach (int value in GenValues(BlocksCount * BlockSize).ToHashSet().GetRandomValues())
                     {
                         if (model.IsValid(i, j, value))
                         {
@@ -44,15 +44,15 @@ public sealed class SudokuModel
 
     public void Solve()
     {
-        var field = new HashSet<int>[BoardSize, BoardSize];
+        var field = new HashSet<int>[BlocksCount * BlockSize, BlocksCount * BlockSize];
 
-        for (int i = 0; i < BoardSize; ++i)
+        for (int i = 0; i < BlocksCount * BlockSize; ++i)
         {
-            for (int j = 0; j < BoardSize; ++j)
+            for (int j = 0; j < BlocksCount * BlockSize; ++j)
             {
                 if (Board[i, j] == 0)
                 {
-                    field[i, j] = GenValues(BoardSize).ToHashSet();
+                    field[i, j] = GenValues(BlocksCount * BlockSize).ToHashSet();
                 }
                 else
                 {
@@ -67,9 +67,9 @@ public sealed class SudokuModel
         {
             changed = false;
 
-            for (int i = 0; i < BoardSize; ++i)
+            for (int i = 0; i < BlocksCount * BlockSize; ++i)
             {
-                for (int j = 0; j < BoardSize; ++j)
+                for (int j = 0; j < BlocksCount * BlockSize; ++j)
                 {
                     HashSet<int> set = field[i, j];
                     var updated = new HashSet<int>();
@@ -93,9 +93,9 @@ public sealed class SudokuModel
                 }
             }
 
-            for (int i = 0; i < BoardSize; ++i)
+            for (int i = 0; i < BlocksCount * BlockSize; ++i)
             {
-                for (int j = 0; j < BoardSize; ++j)
+                for (int j = 0; j < BlocksCount * BlockSize; ++j)
                 {
                     if (Board[i, j] == 0 && field[i, j].Count == 1)
                     {
@@ -107,9 +107,9 @@ public sealed class SudokuModel
 
             if (!changed)
             {
-                for (int i = 0; i < BoardSize && !changed; ++i)
+                for (int i = 0; i < BlocksCount * BlockSize && !changed; ++i)
                 {
-                    for (int j = 0; j < BoardSize && !changed; ++j)
+                    for (int j = 0; j < BlocksCount * BlockSize && !changed; ++j)
                     {
                         if (Board[i, j] == 0)
                         {
@@ -139,9 +139,9 @@ public sealed class SudokuModel
             return false;
         }
 
-        for (int i = 0; i < BoardSize; ++i)
+        for (int i = 0; i < BlocksCount * BlockSize; ++i)
         {
-            for (int j = 0; j < BoardSize; ++j)
+            for (int j = 0; j < BlocksCount * BlockSize; ++j)
             {
                 if (Board[i, j] == 0) return false;
                 if (!IsValid(i, j, Board[i, j])) return false;
@@ -153,9 +153,9 @@ public sealed class SudokuModel
 
     public bool IsValid()
     {
-        for (int i = 0; i < BoardSize; ++i)
+        for (int i = 0; i < BlocksCount * BlockSize; ++i)
         {
-            for (int j = 0; j < BoardSize; ++j)
+            for (int j = 0; j < BlocksCount * BlockSize; ++j)
             {
                 if (!IsValid(i, j, Board[i, j])) return false;
             }
@@ -166,15 +166,15 @@ public sealed class SudokuModel
 
     private bool IsValid(int x, int y, int value)
     {
-        if (x is < 0 or >= BoardSize) return false;
-        if (y is < 0 or >= BoardSize) return false;
+        if (x is < 0 or >= BlocksCount * BlockSize) return false;
+        if (y is < 0 or >= BlocksCount * BlockSize) return false;
 
-        for (int i = 0; i < BoardSize; ++i)
+        for (int i = 0; i < BlocksCount * BlockSize; ++i)
         {
             if (i != x && Board[i, y] == value) return false;
         }
 
-        for (int j = 0; j < BoardSize; ++j)
+        for (int j = 0; j < BlocksCount * BlockSize; ++j)
         {
             if (j != y && Board[x, j] == value) return false;
         }
@@ -182,9 +182,9 @@ public sealed class SudokuModel
         int blockX = (int)Math.Floor(x / (float)BlockSize);
         int blockY = (int)Math.Floor(y / (float)BlockSize);
 
-        for (int i = blockX * BlockSize; i < ((blockX + 1) * BlockSize) && i < BoardSize; ++i)
+        for (int i = blockX * BlockSize; i < ((blockX + 1) * BlockSize) && i < BlocksCount * BlockSize; ++i)
         {
-            for (int j = blockY * BlockSize; j < ((blockY + 1) * BlockSize) && j < BoardSize; ++j)
+            for (int j = blockY * BlockSize; j < ((blockY + 1) * BlockSize) && j < BlocksCount * BlockSize; ++j)
             {
                 if (i != x && j != y && Board[i, j] == value) return false;
             }

@@ -35,12 +35,12 @@ public partial class SudokuSolver : Form
 
     private void pnlMain_Paint(object sender, PaintEventArgs e)
     {
-        SudokuRenderer.Draw(e.Graphics, pnlMain.ClientSize, _model?.Board);
+        SudokuRenderer.Draw(e.Graphics, pnlMain.ClientSize, _model?.Board, 3, 3);
     }
 
     private void pnlMain_Resize(object sender, EventArgs e)
     {
         using Graphics gfx = pnlMain.CreateGraphics();
-        SudokuRenderer.Draw(gfx, pnlMain.ClientSize, _model?.Board);
+        SudokuRenderer.Draw(gfx, pnlMain.ClientSize, _model?.Board, 3, 3);
     }
 }
