@@ -14,9 +14,9 @@ public sealed class SudokuModel
         {
             for (int j = 0; j < BoardSize; ++j)
             {
-                if (Rnd.Next(0, 2) == 0)
+                if (Utils.Rnd.Next(0, 2) == 0)
                 {
-                    foreach (int value in GetRandomValues(GenValues(BoardSize).ToHashSet()))
+                    foreach (int value in GenValues(BoardSize).ToHashSet().GetRandomValues())
                     {
                         if (model.IsValid(i, j, value))
                         {
@@ -113,7 +113,7 @@ public sealed class SudokuModel
                     {
                         if (Board[i, j] == 0)
                         {
-                            HashSet<int> set = GetRandomValues(field[i, j]).ToHashSet();
+                            HashSet<int> set = field[i, j].GetRandomValues().ToHashSet();
 
                             foreach (int value in set)
                             {
@@ -200,18 +200,4 @@ public sealed class SudokuModel
             yield return i;
         }
     }
-
-    private static IEnumerable<int> GetRandomValues(HashSet<int> set)
-    {
-        set = new HashSet<int>(set.ToArray());
-
-        while (set.Count > 0)
-        {
-            int value = set.ToArray()[Rnd.Next(0, set.Count)];
-            set.Remove(value);
-            yield return value;
-        }
-    }
-
-    private static readonly Random Rnd = new();
 }
