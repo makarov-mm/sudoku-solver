@@ -5,7 +5,7 @@ custom double-buffered panel. You play entirely with the mouse (click a cell,
 then click a number on the on-screen pad), and the keyboard works too.
 
 ## Screenshot
-![Screenshot](screenshots/screenshot.png)
+![Screenshot](screenshot.png)
 
 ## Controls
 
