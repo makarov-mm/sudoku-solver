@@ -1,16 +1,9 @@
-﻿namespace SudokuSolver
+namespace SudokuSolver
 {
     partial class SudokuSolver
     {
-        /// <summary>
-        ///  Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        ///  Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,101 +15,163 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            bottomBar = new FlowLayoutPanel();
             btnSolve = new Button();
-            btnReset = new Button();
-            btnExample = new Button();
+            btnClear = new Button();
+            btnNew = new Button();
+            lblDifficulty = new Label();
+            cmbDifficulty = new ComboBox();
+            lblStatus = new Label();
             pnlMain = new DoubleBufferedPanel();
-            flowLayoutPanel1.SuspendLayout();
+            bottomBar.SuspendLayout();
             SuspendLayout();
             // 
-            // flowLayoutPanel1
+            // bottomBar
             // 
-            flowLayoutPanel1.AutoSize = true;
-            flowLayoutPanel1.Controls.Add(btnSolve);
-            flowLayoutPanel1.Controls.Add(btnReset);
-            flowLayoutPanel1.Controls.Add(btnExample);
-            flowLayoutPanel1.Dock = DockStyle.Bottom;
-            flowLayoutPanel1.Location = new Point(0, 859);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(800, 41);
-            flowLayoutPanel1.TabIndex = 0;
+            bottomBar.AutoSize = true;
+            bottomBar.BackColor = Color.FromArgb(238, 242, 248);
+            bottomBar.Controls.Add(btnSolve);
+            bottomBar.Controls.Add(btnClear);
+            bottomBar.Controls.Add(btnNew);
+            bottomBar.Controls.Add(lblDifficulty);
+            bottomBar.Controls.Add(cmbDifficulty);
+            bottomBar.Controls.Add(lblStatus);
+            bottomBar.Dock = DockStyle.Bottom;
+            bottomBar.Location = new Point(0, 559);
+            bottomBar.Name = "bottomBar";
+            bottomBar.Padding = new Padding(10, 8, 10, 8);
+            bottomBar.Size = new Size(600, 53);
+            bottomBar.TabIndex = 1;
+            bottomBar.WrapContents = false;
             // 
             // btnSolve
             // 
-            btnSolve.BackColor = SystemColors.ActiveCaption;
+            btnSolve.BackColor = Color.FromArgb(52, 120, 200);
+            btnSolve.FlatAppearance.BorderSize = 0;
             btnSolve.FlatStyle = FlatStyle.Flat;
-            btnSolve.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnSolve.ForeColor = Color.Black;
-            btnSolve.Location = new Point(3, 3);
+            btnSolve.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            btnSolve.ForeColor = Color.White;
+            btnSolve.Location = new Point(13, 11);
             btnSolve.Name = "btnSolve";
-            btnSolve.Size = new Size(100, 35);
+            btnSolve.Size = new Size(96, 32);
             btnSolve.TabIndex = 0;
             btnSolve.Text = "Solve";
             btnSolve.UseVisualStyleBackColor = false;
             btnSolve.Click += btnSolve_Click;
             // 
-            // btnReset
+            // btnClear
             // 
-            btnReset.BackColor = SystemColors.ActiveCaption;
-            btnReset.FlatStyle = FlatStyle.Flat;
-            btnReset.Location = new Point(109, 3);
-            btnReset.Name = "btnReset";
-            btnReset.Size = new Size(100, 35);
-            btnReset.TabIndex = 1;
-            btnReset.Text = "Reset";
-            btnReset.UseVisualStyleBackColor = false;
-            btnReset.Click += btnReset_Click;
+            btnClear.BackColor = Color.White;
+            btnClear.FlatAppearance.BorderColor = Color.FromArgb(176, 190, 210);
+            btnClear.FlatStyle = FlatStyle.Flat;
+            btnClear.Font = new Font("Segoe UI", 9.5F);
+            btnClear.ForeColor = Color.FromArgb(40, 56, 78);
+            btnClear.Location = new Point(115, 11);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(96, 32);
+            btnClear.TabIndex = 1;
+            btnClear.Text = "Clear";
+            btnClear.UseVisualStyleBackColor = false;
+            btnClear.Click += btnClear_Click;
             // 
-            // btnExample
+            // btnNew
             // 
-            btnExample.BackColor = SystemColors.ActiveCaption;
-            btnExample.FlatStyle = FlatStyle.Flat;
-            btnExample.Location = new Point(215, 3);
-            btnExample.Name = "btnExample";
-            btnExample.Size = new Size(100, 35);
-            btnExample.TabIndex = 2;
-            btnExample.Text = "Example";
-            btnExample.UseVisualStyleBackColor = false;
-            btnExample.Click += btnExample_Click;
+            btnNew.BackColor = Color.White;
+            btnNew.FlatAppearance.BorderColor = Color.FromArgb(176, 190, 210);
+            btnNew.FlatStyle = FlatStyle.Flat;
+            btnNew.Font = new Font("Segoe UI", 9.5F);
+            btnNew.ForeColor = Color.FromArgb(40, 56, 78);
+            btnNew.Location = new Point(217, 11);
+            btnNew.Name = "btnNew";
+            btnNew.Size = new Size(110, 32);
+            btnNew.TabIndex = 2;
+            btnNew.Text = "New puzzle";
+            btnNew.UseVisualStyleBackColor = false;
+            btnNew.Click += btnNew_Click;
+            // 
+            // lblDifficulty
+            // 
+            lblDifficulty.Anchor = AnchorStyles.Left;
+            lblDifficulty.AutoSize = true;
+            lblDifficulty.Font = new Font("Segoe UI", 9.5F);
+            lblDifficulty.ForeColor = Color.FromArgb(70, 86, 108);
+            lblDifficulty.Location = new Point(333, 18);
+            lblDifficulty.Margin = new Padding(6, 0, 3, 0);
+            lblDifficulty.Name = "lblDifficulty";
+            lblDifficulty.Size = new Size(58, 17);
+            lblDifficulty.TabIndex = 3;
+            lblDifficulty.Text = "Difficulty";
+            lblDifficulty.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // cmbDifficulty
+            // 
+            cmbDifficulty.Anchor = AnchorStyles.Left;
+            cmbDifficulty.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbDifficulty.Font = new Font("Segoe UI", 9.5F);
+            cmbDifficulty.Items.AddRange(new object[] { "Easy", "Medium", "Hard", "Expert" });
+            cmbDifficulty.Location = new Point(397, 13);
+            cmbDifficulty.Name = "cmbDifficulty";
+            cmbDifficulty.Size = new Size(100, 25);
+            cmbDifficulty.TabIndex = 4;
+            cmbDifficulty.SelectedIndexChanged += cmbDifficulty_SelectedIndexChanged;
+            // 
+            // lblStatus
+            // 
+            lblStatus.Anchor = AnchorStyles.Left;
+            lblStatus.AutoSize = true;
+            lblStatus.Font = new Font("Segoe UI", 9.5F);
+            lblStatus.ForeColor = Color.FromArgb(52, 90, 140);
+            lblStatus.Location = new Point(503, 18);
+            lblStatus.Margin = new Padding(10, 0, 3, 0);
+            lblStatus.Name = "lblStatus";
+            lblStatus.Size = new Size(0, 17);
+            lblStatus.TabIndex = 5;
             // 
             // pnlMain
             // 
+            pnlMain.BackColor = Color.FromArgb(247, 249, 252);
             pnlMain.Dock = DockStyle.Fill;
             pnlMain.Location = new Point(0, 0);
             pnlMain.Name = "pnlMain";
-            pnlMain.Size = new Size(800, 859);
-            pnlMain.TabIndex = 1;
+            pnlMain.Size = new Size(600, 559);
+            pnlMain.TabIndex = 0;
             pnlMain.Paint += pnlMain_Paint;
+            pnlMain.MouseClick += pnlMain_MouseClick;
+            pnlMain.MouseMove += pnlMain_MouseMove;
+            pnlMain.MouseLeave += pnlMain_MouseLeave;
             pnlMain.Resize += pnlMain_Resize;
             // 
             // SudokuSolver
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 900);
+            ClientSize = new Size(600, 612);
             Controls.Add(pnlMain);
-            Controls.Add(flowLayoutPanel1);
+            Controls.Add(bottomBar);
+            KeyPreview = true;
+            MinimumSize = new Size(420, 520);
             Name = "SudokuSolver";
-            Text = "SudokuSolver";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Sudoku";
+            KeyDown += SudokuSolver_KeyDown;
             Load += SudokuSolver_Load;
-            flowLayoutPanel1.ResumeLayout(false);
+            bottomBar.ResumeLayout(false);
+            bottomBar.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private FlowLayoutPanel flowLayoutPanel1;
+        private FlowLayoutPanel bottomBar;
         private Button btnSolve;
-        private Button btnReset;
-        private Button btnExample;
-        private Panel pnlMain;
+        private Button btnClear;
+        private Button btnNew;
+        private Label lblDifficulty;
+        private ComboBox cmbDifficulty;
+        private Label lblStatus;
+        private DoubleBufferedPanel pnlMain;
     }
 }
