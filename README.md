@@ -4,6 +4,9 @@ A small WinForms Sudoku player and solver. The board is rendered with GDI+ on a
 custom double-buffered panel. You play entirely with the mouse (click a cell,
 then click a number on the on-screen pad), and the keyboard works too.
 
+## Screenshot
+![Screenshot](screenshots/screenshot.png)
+
 ## Controls
 
 - **Click a cell** to select it. Click it again to deselect.
